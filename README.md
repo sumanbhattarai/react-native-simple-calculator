@@ -95,7 +95,7 @@ You can customize the **initial display value**, **button styles**, and **text s
 
 ## 🎥 **DEMO**
 
-![Demo](https://github.com/sumanbhattarai/react-native-simple-calculator/blob/main/react%20native%20simple%20calculator.gif)
+![Demo](https://github.com/user-attachments/assets/cfbd79a9-aaba-4bc2-97c7-4ff30ffe36b5)
 
 ---
 
