@@ -65,6 +65,14 @@ const styles = StyleSheet.create({
 
 ---
 
+## 🎥 **DEMO**
+
+<p>
+ <img src="https://github.com/user-attachments/assets/cfbd79a9-aaba-4bc2-97c7-4ff30ffe36b5" width="400px" height="auto"/>
+</p>
+
+---
+
 ## 🎨 **Customization**
 
 You can customize the **initial display value**, **button styles**, and **text styles**.
@@ -90,12 +98,6 @@ You can customize the **initial display value**, **button styles**, and **text s
   buttonTextStyle={{ color: "#FFF", fontWeight: "bold" }}
 />
 ```
-
----
-
-## 🎥 **DEMO**
-
-![Demo](https://github.com/user-attachments/assets/cfbd79a9-aaba-4bc2-97c7-4ff30ffe36b5)
 
 ---
 
