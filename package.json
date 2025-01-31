@@ -1,11 +1,28 @@
 {
   "name": "react-native-simple-calculator",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && rollup -c",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.64.0",
+    "expo": ">=45.0.0"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "calculator",
+    "typescript"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
