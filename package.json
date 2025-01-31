@@ -13,9 +13,9 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "react": ">=17.0.0",
-    "react-native": ">=0.64.0",
-    "expo": ">=45.0.0"
+    "expo": ">=45.0.0",
+    "react": "^18.3.1",
+    "react-native": "^0.77.0"
   },
   "keywords": [
     "react-native",
@@ -27,12 +27,16 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@babel/preset-env": "^7.26.7",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/react": "^18.3.18",
     "@types/react-native": "^0.72.8",
     "rimraf": "^6.0.1",
     "rollup": "^4.32.1",
-    "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.7.3"
   }
 }
