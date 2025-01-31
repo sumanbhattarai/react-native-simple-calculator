@@ -1,4 +1,4 @@
-import React, { useCallback, memo } from "react";
+import React, { useCallback } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 
 import styles from "./styles";
@@ -110,4 +110,4 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
   );
 };
 
-export default memo(Calculator);
+export default Calculator;

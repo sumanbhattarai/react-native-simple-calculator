@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, Platform, ToastAndroid, Alert, View, TouchableOpacity, Text } from 'react-native';
 
 var styles = StyleSheet.create({
@@ -137,7 +137,6 @@ var Calculator = function Calculator(_ref) {
     }));
   }));
 };
-var index = /*#__PURE__*/memo(Calculator);
 
-export { index as Calculator };
+export { Calculator };
 //# sourceMappingURL=index.esm.js.map

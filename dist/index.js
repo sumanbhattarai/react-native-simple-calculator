@@ -139,7 +139,6 @@ var Calculator = function Calculator(_ref) {
     }));
   }));
 };
-var index = /*#__PURE__*/React.memo(Calculator);
 
-exports.Calculator = index;
+exports.Calculator = Calculator;
 //# sourceMappingURL=index.js.map
