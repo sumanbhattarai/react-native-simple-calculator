@@ -1,5 +1,11 @@
 import React, { useCallback } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
 
 import styles from "./styles";
 import { showError } from "./toast";
@@ -17,9 +23,30 @@ const operator: Array<string> = ["/", "+", "-", "*", "=", "."];
 interface Props {
   displayValue: string;
   updateDisplayValue: (val: string) => void;
+  buttonStyle?: ViewStyle | ViewStyle[];
+  buttonTextStyle?: TextStyle | TextStyle[];
 }
 
-const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
+const Calculator = ({
+  displayValue,
+  updateDisplayValue,
+  buttonStyle,
+  buttonTextStyle,
+}: Props) => {
+  const safeEvaluate = (expression: string) => {
+    // Only allow numbers, basic math operators, and parentheses
+    if (!/^[\d+\-*/(). ]+$/.test(expression)) {
+      showError("Invalid input.");
+      return "";
+    }
+    try {
+      return String(new Function(`return (${expression})`)());
+    } catch (error) {
+      showError("Invalid expression.");
+      return "";
+    }
+  };
+
   const handlePress = useCallback(
     (value: string) => {
       switch (value) {
@@ -48,7 +75,7 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
             // eval does the mathematical expression's calculation.
             //[ALERT] eval is dangerous. It needs to be checked very well before production.
             // eslint-disable-next-line no-eval
-            const result = String(eval(displayValue));
+            const result = safeEvaluate(displayValue);
             if (result === "Infinity") {
               showError("Inifity result are not allowded.");
               return;
@@ -98,10 +125,10 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
           {el.elements.map((value) => (
             <TouchableOpacity
               key={value}
-              style={styles.eachButton}
+              style={[styles.eachButton, buttonStyle]}
               onPress={() => handlePress(value)}
             >
-              <Text style={styles.value}>{value}</Text>
+              <Text style={[styles.value, buttonTextStyle]}>{value}</Text>
             </TouchableOpacity>
           ))}
         </View>

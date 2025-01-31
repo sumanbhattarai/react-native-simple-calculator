@@ -51,7 +51,22 @@ var buttons = [{
 var operator = ["/", "+", "-", "*", "=", "."];
 var Calculator = function Calculator(_ref) {
   var displayValue = _ref.displayValue,
-    updateDisplayValue = _ref.updateDisplayValue;
+    updateDisplayValue = _ref.updateDisplayValue,
+    buttonStyle = _ref.buttonStyle,
+    buttonTextStyle = _ref.buttonTextStyle;
+  var safeEvaluate = function safeEvaluate(expression) {
+    // Only allow numbers, basic math operators, and parentheses
+    if (!/^[\d+\-*/(). ]+$/.test(expression)) {
+      showError("Invalid input.");
+      return "";
+    }
+    try {
+      return String(new Function("return (".concat(expression, ")"))());
+    } catch (error) {
+      showError("Invalid expression.");
+      return "";
+    }
+  };
   var handlePress = useCallback(function (value) {
     switch (value) {
       case "AC":
@@ -81,7 +96,7 @@ var Calculator = function Calculator(_ref) {
           // eval does the mathematical expression's calculation.
           //[ALERT] eval is dangerous. It needs to be checked very well before production.
           // eslint-disable-next-line no-eval
-          var result = String(eval(displayValue));
+          var result = safeEvaluate(displayValue);
           if (result === "Infinity") {
             showError("Inifity result are not allowded.");
             return;
@@ -127,12 +142,12 @@ var Calculator = function Calculator(_ref) {
     }, el.elements.map(function (value) {
       return /*#__PURE__*/React.createElement(TouchableOpacity, {
         key: value,
-        style: styles.eachButton,
+        style: [styles.eachButton, buttonStyle],
         onPress: function onPress() {
           return handlePress(value);
         }
       }, /*#__PURE__*/React.createElement(Text, {
-        style: styles.value
+        style: [styles.value, buttonTextStyle]
       }, value));
     }));
   }));
