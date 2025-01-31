@@ -2,7 +2,7 @@ import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 
 import styles from "./styles";
-import { showError } from "../utils/toast";
+import { showError } from "./toast";
 
 const buttons: Array<{ row: number; elements: Array<string> }> = [
   { row: 1, elements: ["AC", "/", "*", "DEL"] },
@@ -24,12 +24,12 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
     (value: string) => {
       switch (value) {
         case "AC":
-          // it clears the screen.
+          // Clears the screen.
           updateDisplayValue("");
           return;
         case "DEL":
           if (displayValue) {
-            // removes the last element.
+            // Removes the last element.
             const temp = displayValue.slice(0, -1);
             updateDisplayValue(temp);
           }
@@ -37,12 +37,12 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
         case "=":
           if (displayValue) {
             if (operator.includes(displayValue.slice(-1))) {
-              // if the last element if operator then it gives following error.
+              // Last element cannot be an operator.
               showError("Please, complete the expression.");
               return;
             }
             if (!operator.some((el) => displayValue.includes(el))) {
-              // if the expression doesnt contain any operator, no need to calculate.
+              // if the expression doesn't contain any operator, no need to calculate.
               return;
             }
             // eval does the mathematical expression's calculation.
@@ -58,18 +58,18 @@ const Calculator = ({ displayValue, updateDisplayValue }: Props) => {
           return;
         default:
           if (!displayValue && operator.includes(value)) {
-            // first element can't be operator.
+            // First element can't be an operator.
             return;
           }
           if (
             operator.includes(displayValue.slice(-1)) &&
             operator.includes(value)
           ) {
-            // two operator cannot be consecutive.
+            // Two operators cannot be consecutive.
             return;
           }
           if (displayValue.includes(".") && value === ".") {
-            // if there is already a decimal in the display then next decimal can only arrive only there is a operator sperating it as a diff number.
+            // If a decimal is already present in the display, another decimal can only be added if an operator separates it as part of a different number.
             const decimalIndex = displayValue.lastIndexOf(".");
             let operatorExceptDecimalIndex = 0;
             operator.forEach((el) => {
